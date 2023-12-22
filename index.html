@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Todo app</title>
+
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body >
+<main>
+  <div class="hero">
+    <div class="container">
+
+      <div class="top">
+        <h1>TO—DO</h1>
+        <img class="colorMode" alt="A button that activates Night Mode" src="images/icon-moon.svg">
+      </div>
+
+      <div class="typefield">
+        <input type="text" id="input" placeholder="Create a new to-do...">
+      </div>
+
+      <div class="mainSection">
+        <ul class="list">
+          <li draggable="true">
+            <div class="check" onclick="check(this)"></div>Say "Nice..."<div class="close" onclick="remove(this)"></div>
+          </li>
+          <li draggable="true">
+            <div class="check" onclick="check(this)"></div>Toggle Dark Mode<div class="close" onclick="remove(this)"></div>
+          </li>
+          <li draggable="true">
+            <div class="check" onclick="check(this)"></div>Check this task<div class="close" onclick="remove(this)"></div>
+          </li>
+          <li class="done" draggable="true">
+            <div class="check" onclick="check(this)"></div>Uncheck this task<div class="close" onclick="remove(this)"></div>
+          </li>
+          <li draggable="true">
+            <div class="check" onclick="check(this)"></div>Delete this task →→<div class="close" onclick="remove(this)"></div>
+          </li>
+          <li draggable="true">
+            <div class="check" onclick="check(this)"></div>Test out filters ↓↓<div class="close" onclick="remove(this)"></div>
+          </li>
+          <li class="done" draggable="true">
+            <div class="check" onclick="check(this)"></div>Clear completed tasks!<div class="close" onclick="remove(this)"></div>
+          </li>
+          <li id="last" class="done"></li>
+        </ul>
+        
+        <div class="bottom">
+          <p id="itemCounter">" items left"</p>
+          <div class="filtersDesktop">
+            <p data-node="li" onclick="sorter(this)" class="selected" name="All">All</p>
+            <p data-node="li:not(.done)" onclick="sorter(this)" name="Active">Active</p>
+            <p data-node=".done" onclick="sorter(this)" name="Completed">Completed</p>
+          </div>
+          <p onclick="clearCompleted()">Clear Completed</p>
+        </div>
+      </div>
+
+      <div class="filtersMobile">
+        <p data-node="li" onclick="sorter(this)" class="selected" name="All">All</p>
+        <p data-node="li:not(.done)" onclick="sorter(this)" name="Active">Active</p>
+        <p data-node=".done" onclick="sorter(this)" name="Completed">Completed</p>
+      </div>
+
+      <p class="notice">Drag and drop to reorder list</p>
+
+    </div>
+  </div>
+</main>
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+<script src="script.js">
+</script>
+</body>
+</html>

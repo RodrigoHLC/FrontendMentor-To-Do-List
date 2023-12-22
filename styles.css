@@ -1,0 +1,316 @@
+/* LAYOUT AND CSS FINE TUNING TOOK: 3:30 HOURS */
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    font-family: josefin sans, sans-serif;
+    font-size:18px;
+    text-align: center;
+/* --- COLORS FOR LIGHT MODE --- */
+    --page-background: hsl(0, 0%, 98%) ;
+    --card-background:  white;
+    --list-text: hsl(235, 24%, 19%) ;
+    --crossed-text: hsl(233, 11%, 84%);
+    --placeholder-text: hsl(240, 5%, 76%);
+    --line-color: hsl(233, 11%, 84%) ;
+    --hover-color: hsl(237, 14%, 26%);
+    --shadow-color: hsl(233, 11%, 84%) ;
+    --background: url(./images/bg-desktop-light.jpg);
+    --background-mobile: url(./images/bg-mobile-light.jpg);
+
+    color:var(--list-text);
+    transition:1s;
+}
+/* --- COLORS FOR DARK MODE --- */
+.darkMode {
+    
+    --page-background: hsl(235, 21%, 11%) ;
+    --card-background:  hsl(235, 24%, 19%);
+    --list-text: hsl(234, 39%, 85%) ;
+    --crossed-text: hsl(233, 14%, 35%);
+    --placeholder-text: hsl(234, 17%, 43%);
+    --line-color: hsl(237, 14%, 26%) ;
+    --hover-color: hsl(236, 33%, 92%);
+    --shadow-color: hsl(0, 0%, 0%) ;
+    --background: url(./images/bg-desktop-dark.jpg);
+    --background-mobile: url(./images/bg-mobile-dark.jpg);
+}
+
+.hero {
+    width:100vw;
+    min-height: 100vh;
+    /* border:1px solid orange; */
+    padding: 50px 1rem;
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color:var(--page-background);
+    background-image:var(--background);
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size:100% auto;
+    transition: background-image 1s, background-color 1s;
+}
+/* --- MAIN VERTICAL CONTAINER --- */
+/* --- MAIN VERTICAL CONTAINER --- */
+.container {
+    width:500px;
+    max-width:500px;
+    background-color: transparent;
+
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:1.2rem;
+}
+/*  --- TOP SECTION ---  */
+/*  --- TOP SECTION ---  */
+.top {
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    text-align:center;
+    
+}
+.top h1 {
+    padding-top:10px;
+    letter-spacing: 10px;
+    color:white;
+    
+}
+.top image {
+    transition:all 1s
+}
+.top img:hover {
+    cursor:pointer;
+}
+/* --- INPUT SECTION --- */
+/* --- INPUT SECTION --- */
+/* <input> elements are not containers so they can't use ::before nor ::after. I nest it within <div.typefield> so I can use ::before and ::afters */
+.typefield {
+    border-radius:5px;
+    overflow: hidden;
+    
+}
+#input {
+    /* width:100%; */
+    height:50PX;
+    flex-grow:2;
+    border:none;
+    font-family: josefin sans, sans-serif;
+    font-size:18px;
+    margin-bottom:-4px;
+    background-color:var(--card-background);
+    color:var(--list-text);
+    outline:none;
+    transition: background-color 1s;
+}
+#input::placeholder{
+    color:var(--placeholder-text)
+}
+/* --- DIV.TYPEFIELD and <LI> SHARE SOME PROPERTIES --- */
+.typefield, li {
+    width:100%;
+    min-height:50px;
+    background-color:var(--card-background);
+    list-style: none;
+    /* align-self:stretch; */
+    display:flex;    
+    align-items:center; 
+    padding-left:20px;
+    color:var(--list-text);
+    transition:  1s;
+}
+li {
+    border-bottom:1px solid var(--line-color);
+    padding:15px 20px;
+    text-align:left;
+}
+li:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+/* MAKE LAST CHILD INVISIBLE. THIS IS TO MAKE SURE THERE IS A <LI> BEFORE WHICH TO APPEND THE DRAGGED LIST ITEM IF THE USER WANTS TO SEND IT TO THE LAST SPOT */
+li:last-child {
+    /* display:none; */
+    /* max-height:2px !important; */
+    position:absolute;
+    width: 10px;
+    background-color:transparent;
+    border:none;
+    OPACITY:0;
+    z-indeX:-10;
+}
+.dragging {
+    /* ---THIS DID NOT WORK--- */
+    cursor:grabbing;
+}
+/* --- ADDING EMPTY CIRCLES --- */
+/* --- ADDING EMPTY CIRCLES --- */
+.typefield::before,
+/* li::before, */
+.check {
+    content:"";
+    width: 22px;
+    aspect-ratio:1/1;
+    margin-right:20px;
+    border:1px solid var(--line-color);
+    border-radius:50%;
+    cursor: pointer;
+    transition:  1s;
+}
+/* --- CHECKING EMPTY CIRCLES WITH .done CLASS --- */
+/* --- CHECKING EMPTY CIRCLES WITH .done CLASS --- */
+/* li.done::before,  */
+li.done .check {
+    /* content:url(./images/icon-check.svg); */
+    background-image: url(./images/icon-check.svg), linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background-repeat: no-repeat;
+    background-position:center;
+    text-align:center;
+    transition: background-color 1s;
+    /* padding:auto; */
+    /* font-size:20px; */
+    /* padding-left:1px; */
+}
+li.done {
+    text-decoration: line-through;
+    color:var(--crossed-text);
+    
+}
+
+/* --- ADDING X TO THE RIGHT --- */
+/* --- ADDING X TO THE RIGHT --- */
+.close {
+    content:url(./images/icon-cross.svg);
+    text-align:center;
+    margin-left:auto;
+    visibility:hidden;
+    cursor: pointer;
+}
+.darkMode .close {
+    filter: brightness(2)
+}
+/* --- DISPLAY X WHEN HOVERING OVER <LI> --- */
+/* --- DISPLAY X WHEN HOVERING OVER <LI> --- */
+/* li:hover::after, */
+li:hover .close {
+    visibility:visible
+}
+
+/* --- ADDING BOX SHADOWS --- */
+/* --- ADDING BOX SHADOWS --- */
+.typefield, .mainSection {
+    box-shadow: 0 20px 50px -20px var(--shadow-color);
+}
+.mainSection {border-radius:5px;}
+
+/* --- BOTTOM ROW --- */
+/* --- BOTTOM ROW --- */
+.bottom,
+.filtersDesktop,
+.filtersMobile {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 20px;
+    transition:  1s;
+}
+.bottom {
+    height:40px;
+    background-color:var(--card-background);
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+}
+
+.filtersDesktop {
+    gap:1rem;
+    font-weight:700;
+    background-color:var(--card-background);
+}
+.filtersMobile {
+    display:none;
+    background-color:var(--card-background);
+}
+
+p {
+    font-size:13px;
+    color:hsl(236, 9%, 61%);
+}
+
+.filtersDesktop > p:hover,
+.filtersMobile > p:hover,
+.bottom > p:last-child:hover {
+    cursor:pointer;
+    color:var(--hover-color);
+}
+.filtersDesktop > p.selected,
+.filtersMobile > p.selected,
+.bottom > p:last-child:active {
+    color:hsl(220, 98%, 61%)
+}
+
+/* --- LAST LINE OF TEXT --- */
+.notice {
+    margin-top:25px;
+    background-color:var(--page-background);
+    /* display:inline-block; */
+    width:min-content;
+    align-self:center;
+    text-wrap: nowrap;
+    padding:1em;
+    border-radius:5px;
+    transition:1s;
+}
+
+/* ------- M O B I L E    S C R E E N S  ------- */
+/* ------- M O B I L E    S C R E E N S  ------- */
+
+@media (max-width:430px) {
+    /* --- THE "ALL/ACTIVE/COMPLETED" <DIV> BREAKS AWAY FROM <DIV.BOTTOM> */
+    .filtersDesktop {
+        display:none;
+    }
+
+    .filtersMobile {
+        width:100%;
+        height:50px;
+        border-radius:5px;
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        padding:0 20px;
+        gap:1rem;
+        font-weight:700;display:
+    }
+    /* --- THE BACKGROUND IMAGE CHANGES --- */
+    .hero {
+        background-image:var(--background-mobile);
+        background-position:top;
+        background-repeat: no-repeat;
+        background-size:contain ;
+    }
+}
+
+
+
+
+### Light Theme
+ Very Light Gray {color: hsl(0, 0%, 98%)}
+ Very Light Grayish Blue {color: hsl(236, 33%, 92%)}
+ Light Grayish Blue {color: hsl(233, 11%, 84%)}
+ Dark Grayish Blue {color: hsl(236, 9%, 61%)}
+ Very Dark Grayish Blue {color: hsl(235, 19%, 35%)}
+
+### Dark Theme
+ Very Dark Blu {color: hsl(235, 21%, 11%)}
+ Very Dark Desaturated Blue {color: hsl(235, 24%, 19%)}
+ Light Grayish Blue {color: hsl(234, 39%, 85%)}
+ Light Grayish Blue hover {color: hsl(236, 33%, 92%)}
+ Dark Grayish Blue {color: hsl(234, 11%, 52%)}
+ Very Dark Grayish Blue {color: hsl(233, 14%, 35%)}
+ Very Dark Grayish Blue {color: hsl(237, 14%, 26%)}
